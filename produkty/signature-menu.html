@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signature Menu | More Than Smoke</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #000000;
+        --text: #f5f5f5;
+        --muted: rgba(245, 245, 245, 0.7);
+        --line: rgba(245, 245, 245, 0.16);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Manrope", sans-serif;
+      }
+
+      .header-wrap {
+        position: fixed;
+        top: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 50;
+        width: min(92vw, 48rem);
+      }
+
+      .nav-links {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        column-gap: 1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.92);
+        padding: 0.55rem 1.1rem 0.6rem;
+      }
+
+      .nav-side {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.78);
+        text-decoration: none;
+        text-align: center;
+        font-family: "Archivo Expanded", sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+
+      .nav-links-logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -1.8rem;
+        padding: 0 0.7rem;
+      }
+
+      .nav-center-logo {
+        width: 7.2rem;
+        height: auto;
+        display: block;
+      }
+
+      .mobile-nav {
+        display: none;
+      }
+
+      .mobile-brand-logo {
+        display: none;
+      }
+
+      main {
+        min-height: 100vh;
+        padding: 7.5rem 1.2rem 3rem;
+        max-width: min(96vw, 70rem);
+        margin: 0 auto;
+      }
+
+      .screen {
+        margin-bottom: 1.25rem;
+      }
+
+      .page {
+        width: 100%;
+        padding: 2.6rem 2.2rem;
+        background: transparent;
+        border: none;
+      }
+
+      .hero-page {
+        display: grid;
+        place-items: center;
+        min-height: 32vh;
+      }
+
+      .hero-inner {
+        text-align: center;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(3rem, 7vw, 5.2rem);
+        line-height: 0.95;
+        font-weight: 400;
+        min-height: 1.2em;
+      }
+
+      .hero-copy {
+        margin: 1rem 0 0;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .drink-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 1.2rem 1.6rem;
+      }
+
+      .drink-block {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(9rem, 1fr);
+        align-items: center;
+        column-gap: clamp(0.85rem, 2.2vw, 1.85rem);
+        row-gap: 1rem;
+        max-width: 100%;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: opacity 680ms ease, transform 680ms ease;
+      }
+
+      .drink-copy {
+        min-width: 0;
+        max-width: 18rem;
+        text-align: left;
+      }
+
+      .drink-block.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .drink-block.top-left {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+      }
+
+      .drink-block.top-right {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        margin-top: 8rem;
+      }
+
+      .drink-block.bottom-left {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+      }
+
+      .drink-block.bottom-right {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+      }
+
+      .drink-block.reverse {
+        grid-template-columns: minmax(9rem, 1fr) minmax(0, 1.45fr);
+      }
+
+      .drink-block.reverse .drink-figure {
+        order: 2;
+      }
+
+      .drink-block.reverse .drink-copy {
+        order: 1;
+        text-align: right;
+        justify-self: end;
+      }
+
+      .drink-block.reverse .drink-head {
+        justify-content: flex-end;
+      }
+
+      .drink-block.no-image {
+        grid-template-columns: 1fr;
+      }
+
+      .drink-block.no-image .drink-copy {
+        max-width: 18rem;
+        justify-self: end;
+      }
+
+      .drink-order {
+        margin: 0 0 0.65rem;
+        font-family: "Archivo Expanded", sans-serif;
+        font-size: 0.62rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: rgba(245, 245, 245, 0.45);
+      }
+
+      .drink-figure {
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        width: clamp(12rem, 20vw, 18rem);
+        height: clamp(15rem, 24vw, 22rem);
+        max-width: none;
+        overflow: hidden;
+        justify-self: start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .drink-block.reverse .drink-figure {
+        justify-self: end;
+      }
+
+      .drink-figure img {
+        width: 430%;
+        max-width: none;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .drink-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .drink-name {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+        line-height: 1;
+        font-weight: 600;
+      }
+
+      .drink-price {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.3rem, 1.75vw, 1.75rem);
+        line-height: 1;
+      }
+
+      .drink-ingredients {
+        margin: 0;
+        white-space: pre-line;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
+      @media (max-width: 860px) {
+        .header-wrap {
+          display: none;
+        }
+
+        .mobile-nav {
+          position: fixed;
+          left: 50%;
+          bottom: max(1rem, env(safe-area-inset-bottom));
+          transform: translateX(-50%);
+          z-index: 60;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          width: min(calc(100% - 1rem), 27rem);
+          gap: 0.25rem;
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          background: linear-gradient(180deg, rgba(12, 12, 12, 0.9), rgba(0, 0, 0, 0.68));
+          padding: 0.45rem;
+          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+        }
+
+        .mobile-brand-logo {
+          position: fixed;
+          left: 50%;
+          top: max(0.9rem, env(safe-area-inset-top));
+          z-index: 61;
+          display: inline-flex;
+          width: clamp(5.8rem, 24vw, 8rem);
+          transform: translateX(-50%);
+          align-items: center;
+          justify-content: center;
+          pointer-events: auto;
+        }
+
+        .mobile-brand-logo img {
+          display: block;
+          width: 100%;
+          height: auto;
+          object-fit: contain;
+          filter: drop-shadow(0 12px 24px rgba(255, 255, 255, 0.08));
+        }
+
+        .mobile-nav a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 2.15rem;
+          border-radius: 999px;
+          text-align: center;
+          color: rgba(255, 255, 255, 0.78);
+          text-decoration: none;
+          font-family: "Archivo Expanded", sans-serif;
+          font-size: clamp(0.5rem, 1.9vw, 0.62rem);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a:focus-visible {
+          background: rgba(255, 255, 255, 0.08);
+          color: #fff;
+        }
+
+        main {
+          width: 100%;
+          max-width: min(100%, 40rem);
+          margin: 0 auto;
+          padding: 5.4rem clamp(1.35rem, 5.5vw, 2rem) 6rem;
+        }
+
+        .screen {
+          margin-bottom: 0.85rem;
+        }
+
+        .page {
+          padding: 2.35rem 0;
+        }
+
+        .drink-pair {
+          width: min(100%, 34rem);
+          margin: 0 auto;
+          container-type: inline-size;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+          align-items: start;
+          gap: 1.8rem;
+        }
+
+        .drink-block,
+        .drink-block.top-left,
+        .drink-block.top-right,
+        .drink-block.bottom-left,
+        .drink-block.bottom-right {
+          grid-column: auto;
+          grid-row: auto;
+          display: flex;
+          width: min(100%, 30rem);
+          max-width: 100%;
+          margin-top: 0;
+          align-self: start;
+          align-items: center;
+          gap: clamp(0.65rem, 3.2vw, 1.1rem);
+          text-align: center;
+        }
+
+        .drink-pair .drink-block:nth-child(1) {
+          grid-column: 1;
+          grid-row: 1;
+          justify-self: start;
+          flex-direction: row;
+        }
+
+        .drink-pair .drink-block:nth-child(2) {
+          grid-column: 1;
+          grid-row: 2;
+          justify-self: end;
+          margin-top: -0.6rem;
+          flex-direction: row-reverse;
+        }
+
+        .drink-block.reverse {
+          flex-direction: row-reverse;
+        }
+
+        .drink-block .drink-figure {
+          flex: 0 0 clamp(160px, 42vw, 180px);
+          width: clamp(160px, 42vw, 180px);
+          max-width: clamp(160px, 42vw, 180px);
+          height: clamp(190px, 50vw, 230px);
+          overflow: visible;
+          border: none;
+          background: transparent;
+        }
+
+        .drink-block:nth-child(1) .drink-figure {
+          margin-left: 0;
+          margin-right: 15px;
+        }
+
+        .drink-block.reverse .drink-figure {
+          order: 0;
+          margin-right: 0;
+          margin-left: 15px;
+        }
+
+        .drink-block .drink-figure img {
+          width: 100%;
+          max-width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+        }
+
+        .drink-copy {
+          flex: 1 1 0;
+          width: auto;
+          max-width: none;
+          min-width: 0;
+          text-align: center;
+          overflow-wrap: break-word;
+        }
+
+        .drink-block.reverse .drink-copy {
+          order: 0;
+          text-align: center;
+        }
+
+        .drink-block.no-image {
+          justify-content: flex-end !important;
+        }
+
+        .drink-block.no-image .drink-copy {
+          flex: 0 1 40% !important;
+          width: 40% !important;
+          max-width: none !important;
+        }
+
+        .drink-head,
+        .drink-block.reverse .drink-head {
+          display: grid;
+          grid-template-columns: 1fr;
+          justify-content: center;
+          gap: 0.8cqw;
+          margin-bottom: 1.1cqw;
+          text-align: center;
+        }
+
+        .drink-order {
+          margin-bottom: 1.35cqw;
+          font-size: clamp(0.58rem, 2.7cqw, 0.9rem);
+          letter-spacing: 0.18em;
+        }
+
+        .drink-name {
+          font-size: clamp(1.22rem, 6.35cqw, 2rem);
+          line-height: 0.95;
+        }
+
+        .drink-price {
+          font-size: clamp(1.08rem, 5.2cqw, 1.7rem);
+        }
+
+        .drink-ingredients {
+          font-size: clamp(0.86rem, 3.95cqw, 1.25rem);
+          line-height: 1.3;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .drink-block,
+        .drink-block.top-left,
+        .drink-block.top-right,
+        .drink-block.bottom-left,
+        .drink-block.bottom-right {
+          display: flex !important;
+          align-items: center !important;
+          gap: 15px !important;
+          width: 100% !important;
+          max-width: none !important;
+          overflow: visible !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) {
+          justify-content: flex-start !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2),
+        .drink-block.reverse {
+          justify-content: flex-end !important;
+          flex-direction: row-reverse !important;
+        }
+
+        .drink-figure {
+          flex: 0 0 clamp(140px, 48vw, 220px) !important;
+          width: clamp(140px, 48vw, 220px) !important;
+          max-width: none !important;
+          height: clamp(175px, 60vw, 260px) !important;
+          overflow: visible !important;
+          background: transparent !important;
+          border: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .drink-copy {
+          flex: 1 1 0 !important;
+          width: auto !important;
+          min-width: 0 !important;
+        }
+
+        .drink-figure img {
+          width: clamp(700px, 235vw, 1100px) !important;
+          max-width: none !important;
+          height: auto !important;
+          object-fit: contain !important;
+          object-position: center !important;
+          transform: none !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) .drink-figure {
+          margin-left: clamp(-28px, -7vw, -14px) !important;
+          margin-right: 15px !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2) .drink-figure,
+        .drink-block.reverse .drink-figure {
+          margin-left: 15px !important;
+          margin-right: clamp(-28px, -7vw, -14px) !important;
+          display: flex !important;
+          justify-content: center !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) .drink-figure img {
+          transform: translateX(clamp(-72px, -19vw, -38px)) !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2) .drink-figure img,
+        .drink-block.reverse .drink-figure img {
+          transform: translateX(clamp(38px, 19vw, 72px)) !important;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .mobile-nav {
+          top: auto !important;
+          bottom: max(1rem, env(safe-area-inset-bottom));
+          width: min(calc(100vw - 1.4rem), 24rem);
+          padding: 0.38rem;
+        }
+
+        .mobile-nav a {
+          min-height: 2rem;
+          font-size: clamp(0.46rem, 1.75vw, 0.58rem);
+          letter-spacing: 0.035em;
+        }
+
+        main {
+          max-width: min(100vw, 42rem);
+          padding-inline: clamp(0.9rem, 4vw, 1.4rem);
+          padding-bottom: 6rem;
+          overflow-x: hidden;
+        }
+
+        .drink-pair {
+          width: min(100%, 36rem);
+          gap: clamp(1.2rem, 4vw, 1.8rem);
+        }
+
+        .drink-block,
+        .drink-block.top-left,
+        .drink-block.top-right,
+        .drink-block.bottom-left,
+        .drink-block.bottom-right {
+          display: flex !important;
+          align-items: center !important;
+          width: min(100%, 31rem) !important;
+          max-width: 100% !important;
+          gap: clamp(0.45rem, 2.5vw, 0.9rem) !important;
+          overflow: visible !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) {
+          justify-self: start !important;
+          justify-content: flex-start !important;
+          flex-direction: row !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2),
+        .drink-block.reverse {
+          justify-self: end !important;
+          justify-content: flex-end !important;
+          flex-direction: row-reverse !important;
+        }
+
+        .drink-figure {
+          flex: 0 0 clamp(132px, 42vw, 205px) !important;
+          width: clamp(132px, 42vw, 205px) !important;
+          max-width: clamp(132px, 42vw, 205px) !important;
+          height: clamp(170px, 55vw, 270px) !important;
+          margin: 0 !important;
+          overflow: visible !important;
+          background: transparent !important;
+          border: 0 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .drink-figure img {
+          width: clamp(680px, 215vw, 1080px) !important;
+          max-width: none !important;
+          height: auto !important;
+          object-fit: contain !important;
+          object-position: center !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) .drink-figure {
+          margin-left: clamp(-18px, -4.5vw, -8px) !important;
+          margin-right: 10px !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) .drink-figure img {
+          transform: translateX(clamp(-54px, -14vw, -24px)) !important;
+        }
+
+        .drink-figure:has(img[src="../fotky:videa/1.webp"]),
+        .drink-figure:has(img[src="../fotky:videa/3.webp"]),
+        .drink-figure:has(img[src="../fotky:videa/5.webp"]) {
+          margin-left: 0 !important;
+          margin-right: 10px !important;
+        }
+
+        .drink-figure img[src="../fotky:videa/1.webp"],
+        .drink-figure img[src="../fotky:videa/3.webp"],
+        .drink-figure img[src="../fotky:videa/5.webp"] {
+          transform: translateX(clamp(-22px, -6vw, -10px)) !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2) .drink-figure,
+        .drink-block.reverse .drink-figure {
+          margin-left: 10px !important;
+          margin-right: clamp(-18px, -4.5vw, -8px) !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2) .drink-figure img,
+        .drink-block.reverse .drink-figure img {
+          transform: translateX(clamp(24px, 14vw, 54px)) !important;
+        }
+
+        .drink-copy {
+          flex: 1 1 0 !important;
+          min-width: 0 !important;
+          max-width: 11rem !important;
+          text-align: center !important;
+          overflow-wrap: anywhere !important;
+        }
+
+        .drink-block.no-image .drink-copy {
+          flex: 0 1 clamp(7rem, 34vw, 11rem) !important;
+          width: auto !important;
+          max-width: 11rem !important;
+        }
+      }
+
+      @media (max-width: 860px) {
+        main {
+          max-width: min(100vw, 34rem) !important;
+          padding: 5.4rem clamp(1rem, 4vw, 1.5rem) 6rem !important;
+          overflow-x: hidden !important;
+        }
+
+        .mobile-nav {
+          top: auto !important;
+          bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+          width: min(calc(100vw - 1.4rem), 24rem) !important;
+          max-width: calc(100vw - 1.4rem) !important;
+        }
+
+        .drink-pair {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          gap: clamp(1.2rem, 5vw, 2rem) !important;
+          width: 100% !important;
+          margin: 0 auto !important;
+          overflow: visible !important;
+        }
+
+        .drink-block,
+        .drink-block.top-left,
+        .drink-block.top-right,
+        .drink-block.bottom-left,
+        .drink-block.bottom-right {
+          display: flex !important;
+          align-items: center !important;
+          width: min(100%, 29rem) !important;
+          max-width: 100% !important;
+          gap: clamp(0.6rem, 2.7vw, 1rem) !important;
+          margin-top: 0 !important;
+          overflow: visible !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) {
+          grid-column: 1 !important;
+          grid-row: auto !important;
+          justify-self: start !important;
+          justify-content: flex-start !important;
+          flex-direction: row !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2),
+        .drink-block.reverse {
+          grid-column: 1 !important;
+          grid-row: auto !important;
+          justify-self: end !important;
+          justify-content: flex-start !important;
+          flex-direction: row-reverse !important;
+        }
+
+        .drink-figure {
+          flex: 0 0 clamp(135px, 36vw, 180px) !important;
+          width: clamp(135px, 36vw, 180px) !important;
+          max-width: clamp(135px, 36vw, 180px) !important;
+          height: clamp(175px, 46vw, 230px) !important;
+          margin: 0 !important;
+          overflow: hidden !important;
+          background: transparent !important;
+          border: 0 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .drink-figure img {
+          width: clamp(650px, 175vw, 900px) !important;
+          max-width: none !important;
+          height: auto !important;
+          object-fit: contain !important;
+          object-position: center !important;
+          transform: none !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) .drink-figure {
+          margin-left: clamp(-10px, -2vw, -4px) !important;
+          margin-right: 0.65rem !important;
+        }
+
+        .drink-pair .drink-block:nth-child(1) .drink-figure img {
+          transform: translateX(clamp(-26px, -5vw, -12px)) !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2) .drink-figure,
+        .drink-block.reverse .drink-figure {
+          margin-left: 0.65rem !important;
+          margin-right: clamp(-10px, -2vw, -4px) !important;
+        }
+
+        .drink-pair .drink-block:nth-child(2) .drink-figure img,
+        .drink-block.reverse .drink-figure img {
+          transform: translateX(clamp(12px, 5vw, 26px)) !important;
+        }
+
+        .drink-copy {
+          flex: 1 1 0 !important;
+          width: auto !important;
+          min-width: 0 !important;
+          max-width: clamp(8.5rem, 36vw, 12rem) !important;
+          text-align: center !important;
+          overflow-wrap: anywhere !important;
+        }
+
+        .drink-block.reverse .drink-copy {
+          flex: 0 1 clamp(8.5rem, 36vw, 12rem) !important;
+        }
+
+        .drink-block.no-image {
+          justify-content: flex-start !important;
+        }
+
+        .drink-block.no-image .drink-copy {
+          flex: 0 1 clamp(9rem, 42vw, 13rem) !important;
+          max-width: clamp(9rem, 42vw, 13rem) !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header-wrap">
+      <nav class="nav-links" aria-label="Hlavná navigácia">
+        <div class="nav-side">
+          <a href="../index.html#hero">Domov</a>
+          <a href="./signature-menu.html">Produkty</a>
+        </div>
+        <a href="../index.html#hero" class="nav-links-logo" aria-label="More Than Smoke">
+          <img
+            src="../fotky:videa/logo.png"
+            alt="More Than Smoke"
+            class="nav-center-logo"
+          />
+        </a>
+        <div class="nav-side">
+          <a href="../index.html#onas">O nás</a>
+          <a href="../index.html#kontakt">Kontakt</a>
+        </div>
+      </nav>
+    </header>
+
+    <a href="../index.html#hero" class="mobile-brand-logo" aria-label="More Than Smoke">
+      <img src="../fotky:videa/logo.png" alt="More Than Smoke" />
+    </a>
+
+    <nav class="mobile-nav" aria-label="Mobilná navigácia">
+      <a href="../index.html#hero">Domov</a>
+      <a href="./signature-menu.html">Produkty</a>
+      <a href="../index.html#onas">O nás</a>
+      <a href="../index.html#kontakt">Kontakt</a>
+    </nav>
+
+    <main>
+      <section class="screen">
+        <div class="page hero-page">
+          <div class="hero-inner">
+            <h1 class="hero-title" id="typed-title" data-text="Signature Menu"></h1>
+            <p class="hero-copy">Minimalistický digitálny lístok</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen">
+        <div class="page">
+          <div class="drink-pair">
+            <article class="drink-block top-left reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/1.webp" alt="BON BON" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">1.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">BON BON 0,4l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Bombay Sapphire
+Jahodové pyré
+Líči pyré
+Citrónová šťava</p>
+              </div>
+            </article>
+
+            <article class="drink-block bottom-right reverse no-image reveal-drink">
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">2.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Ginger Smoke 0,15l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Bombay gin
+Citrón
+Pomarančová šťava
+Medový sirup
+Čerstvý zázvor</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen">
+        <div class="page">
+          <div class="drink-pair">
+            <article class="drink-block top-left reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/3.webp" alt="Rum Kiss" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">3.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Rum Kiss 0,35l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Biely rum
+Jahodové pyré
+Marakujové pyré
+Limetka</p>
+              </div>
+            </article>
+
+            <article class="drink-block bottom-right reverse reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/4.webp" alt="Raspberry Sour" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">4.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Raspberry Sour 0,15l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Bombay gin
+Malinové pyré
+Kokosový sirup
+Citrón
+Maliny</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen">
+        <div class="page">
+          <div class="drink-pair">
+            <article class="drink-block top-left reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/5.webp" alt="Berry Passion" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">5.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Berry Passion 0,35l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Grey Goose vodka
+Malinové pyré
+Marakujové pyré
+Limetka</p>
+              </div>
+            </article>
+
+            <article class="drink-block bottom-right reverse reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/6.webp" alt="Tropical Punch" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">6.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Tropical Punch 0,35l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Canerock Rum
+Ananásové pyré
+Mangové pyré
+Pomarančový džús
+Limetka
+Grenadínový sirup</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen">
+        <div class="page">
+          <div class="drink-pair">
+            <article class="drink-block top-left reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/7.webp" alt="Blue Rhubarb" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">7.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Blue Rhubarb 0,35l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Grey Goose vodka
+Rebarborové pyré
+Čučoriedkové pyré
+Limetka
+Bazový sirup</p>
+              </div>
+            </article>
+
+            <article class="drink-block bottom-right reverse reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/8.webp" alt="Blue Lychee" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">8.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Blue Lychee 0,09l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Beefeater
+Bols Blue Curacao
+Finlandia Cucumber
+Líči pyré</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen">
+        <div class="page">
+          <div class="drink-pair">
+            <article class="drink-block top-left reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/9.webp" alt="Botanical" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">9.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Botanical 0,09l</h2>
+                  <span class="drink-price">9,90€</span>
+                </div>
+                <p class="drink-ingredients">Finlandia Blackcurrant
+Olmeca Blanco
+Malinové pyré
+Jabuticabové pyré</p>
+              </div>
+            </article>
+
+            <article class="drink-block bottom-right reverse reveal-drink">
+              <figure class="drink-figure">
+                <img src="../fotky:videa/10.webp" alt="Balíčky Premium" loading="lazy" decoding="async" />
+              </figure>
+              <div class="drink-copy">
+                <p class="drink-order" aria-hidden="true">10.</p>
+                <div class="drink-head">
+                  <h2 class="drink-name">Basic Finlandia</h2>
+                  <span class="drink-price">90€</span>
+                </div>
+                <p class="drink-ingredients">Finlandia 1L, 12 ks Coca Cola-Zero
+
+Basic Brugal 1888 - 125€
+Brugal 1888, 12 ks Coca Cola
+
+Medium - 130€
+Grey Goose 1L, 6 ks Coca Cola-Zero
+
+Master - 115€
+Finlandia 1L, 6 ks Monster, 6 ks Coca Cola
+2 Hookahs - Medium</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const drinks = document.querySelectorAll(".reveal-drink");
+      const typedTitle = document.getElementById("typed-title");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        {
+          threshold: 0.26,
+          rootMargin: "0px 0px -8% 0px",
+        }
+      );
+
+      drinks.forEach((drink) => observer.observe(drink));
+
+      function typeTitle(element, speed = 75) {
+        if (!element) return;
+        const text = element.dataset.text || "";
+        let index = 0;
+
+        function tick() {
+          element.textContent = text.slice(0, index);
+          index += 1;
+          if (index <= text.length) {
+            window.setTimeout(tick, speed);
+          }
+        }
+
+        tick();
+      }
+
+      window.addEventListener("load", () => {
+        typeTitle(typedTitle, 70);
+      });
+    </script>
+  </body>
+</html>
